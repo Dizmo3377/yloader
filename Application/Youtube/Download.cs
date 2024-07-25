@@ -27,7 +27,7 @@ public class Download
             var streamManifest = await youtube.Videos.Streams.GetManifestAsync(video.Id);
 
             var videoStreamInfo = (request.Format == "mp3") ? null : streamManifest
-                .GetVideoOnlyStreams()
+                .GetMuxedStreams()
                 .FirstOrDefault(s => s.VideoQuality.Label == request.Format);
 
             var audioStreamInfo = streamManifest

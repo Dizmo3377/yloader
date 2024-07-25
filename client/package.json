@@ -11,10 +11,15 @@
   },
   "dependencies": {
     "antd": "^5.19.3",
+    "axios": "^1.7.2",
+    "file-saver": "^2.0.5",
+    "mobx": "^6.13.1",
+    "mobx-react-lite": "^4.0.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@types/file-saver": "^2.0.7",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.15.0",

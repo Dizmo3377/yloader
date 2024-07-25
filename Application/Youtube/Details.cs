@@ -39,7 +39,7 @@ public class Details
         private async Task<ICollection<string>> GetVideoFormats(Video video)
         {
             var streamManifest = await youtube.Videos.Streams.GetManifestAsync(video.Id);
-            var videoStreams = streamManifest.GetVideoOnlyStreams();
+            var videoStreams = streamManifest.GetMuxedStreams();
 
             HashSet<string> formats = new HashSet<string>();
 
