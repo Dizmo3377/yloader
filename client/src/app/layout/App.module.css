@@ -1,0 +1,25 @@
+.layout {
+  height: 100vh;
+  margin: -8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: ghostwhite;
+  text-align: left;
+  font-size: 200%;
+  font: bold;
+}
+
+.content {
+  background-color: white;
+  text-align: center;
+  display: unset;
+  flex-direction: column;
+}
+
+.footer {
+  background-color: ghostwhite;
+  text-align: center;
+}

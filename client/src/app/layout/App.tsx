@@ -1,30 +1,20 @@
-import { useState } from "react";
-import "./App.css";
-import { Button } from "antd";
-import { useStore } from "../stores/store";
-import { Video } from "../models/video";
+import styles from "./App.module.css";
+import { Layout } from "antd";
+import { Content, Footer, Header } from "antd/es/layout/layout";
+
 import { observer } from "mobx-react-lite";
+import YoutubeLoader from "../../components/YoutubeLoader";
 
 export default observer(function App() {
-  const [video, setVideo] = useState<Video>();
-  const { youtubeStore } = useStore();
-
-  async function testDetails() {
-    let video = await youtubeStore.getVideoData("YM9lQUneMsY");
-    setVideo(video);
-  }
-
-  async function testDownload() {
-    await youtubeStore.downloadVideo("YM9lQUneMsY", "360p");
-  }
-
   return (
-    <>
-      <h1>YLoader</h1>
-      <Button loading={youtubeStore.loading} onClick={testDownload}>
-        Test
-      </Button>
-      <p>{video?.title}</p>
-    </>
+    <Layout className={styles.layout}>
+      <Header className={styles.header}>YLoader</Header>
+      <Content className={styles.content}>
+        <YoutubeLoader />
+      </Content>
+      <Footer className={styles.footer}>
+        YLoader ©{new Date().getFullYear()} Created by Dmytro Zozulia
+      </Footer>
+    </Layout>
   );
 });
