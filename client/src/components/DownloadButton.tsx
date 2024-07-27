@@ -14,10 +14,7 @@ export default observer(function DownloadButton({}) {
 
   return (
     video !== undefined && (
-      <Dropdown
-        menu={{ items, onClick: (e) => downloadVideo(video.id, e.key) }}
-        trigger={["click"]}
-      >
+      <Dropdown menu={{ items, onClick: (e) => downloadVideo(video, e.key) }} trigger={["click"]}>
         <Button>
           <Space>Download Formats</Space>
         </Button>

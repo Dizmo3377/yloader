@@ -1,11 +1,15 @@
 .layout {
-  height: 100vh;
+  min-height: 100vh;
   margin: -8px;
   display: flex;
   flex-direction: column;
 }
 
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
   background-color: ghostwhite;
   text-align: left;
   font-size: 200%;
