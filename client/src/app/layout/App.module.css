@@ -27,3 +27,16 @@
   background-color: ghostwhite;
   text-align: center;
 }
+
+a:link {
+  color: black;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: grey;
+}
+
+a:hover {
+  color: rgb(45, 45, 45);
+}

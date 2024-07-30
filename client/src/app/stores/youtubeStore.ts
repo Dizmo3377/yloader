@@ -4,7 +4,8 @@ import { Video } from "../models/video";
 import { DownloadLog } from "../models/downloadLog";
 
 export default class YoutubeStore {
-  loading = false;
+  dataLoading = false;
+  downlaodLoading = false;
   error = "";
   video: Video | undefined;
 
@@ -20,8 +21,12 @@ export default class YoutubeStore {
     this.error = state;
   };
 
-  private setLoading = (state: boolean) => {
-    this.loading = state;
+  private setDataLoading = (state: boolean) => {
+    this.dataLoading = state;
+  };
+
+  private setDownloadLoading = (state: boolean) => {
+    this.downlaodLoading = state;
   };
 
   private extractYoutubeId = (url: string) => {
@@ -38,12 +43,12 @@ export default class YoutubeStore {
   };
 
   getVideoData = async (link: string) => {
-    this.setLoading(true);
+    this.setDataLoading(true);
 
     runInAction(async () => {
       let id = this.extractYoutubeId(link);
       if (id == null) {
-        this.setLoading(false);
+        this.setDataLoading(false);
         this.setError("Invalid youtube link");
         return;
       }
@@ -51,21 +56,25 @@ export default class YoutubeStore {
       const result = (await agent.Youtube.details(id)) as Video;
       result.id = id;
       this.setVideo(result);
-      this.setLoading(false);
+      this.setDataLoading(false);
       this.setError("");
     });
   };
 
   downloadVideo = async (video: Video, format: string) => {
+    this.setDownloadLoading(true);
+
     runInAction(async () => {
       const { videoLink, audioLink } = await agent.Youtube.download(video.id, format);
 
       if (!videoLink && !audioLink) {
         this.setError("Error while gettng download links");
+        this.setDownloadLoading(false);
         return;
       }
 
       this.saveToLocalStorage({ image: video.image, title: video.title });
+      this.setDownloadLoading(false);
       window.open(!videoLink ? audioLink : videoLink, "_blank");
     });
   };

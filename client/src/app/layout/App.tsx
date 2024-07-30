@@ -17,7 +17,8 @@ export default observer(function App() {
         <YoutubeLoader />
       </Content>
       <Footer className={styles.footer}>
-        YLoader ©{new Date().getFullYear()} Created by Dmytro Zozulia
+        YLoader © {new Date().getFullYear()} Created by{" "}
+        <a href="https://github.com/Dizmo3377">Dmytro Zozulia</a>
       </Footer>
     </Layout>
   );
